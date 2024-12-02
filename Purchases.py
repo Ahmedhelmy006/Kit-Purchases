@@ -10,7 +10,8 @@ ID = os.getenv('KIT_OAUTH2_ID')
 SECRET = os.getenv('KIT_OAUTH2_SECRET')
 authorization_base_url = "https://api.kit.com/oauth/authorize"
 token_url = "https://api.kit.com/oauth/token"
-redirect_uri = "https://localhost"
+redirect_uri = "https://e976-197-36-97-5.ngrok-free.app/kit/oauth/callback"  
+
 
 oauth = OAuth2Session(ID, redirect_uri=redirect_uri)
 authorization_url, state = oauth.authorization_url(authorization_base_url)
@@ -62,7 +63,6 @@ while next_page_url and total_records < records_to_fetch:
         print(f"Error: {response.status_code} - {response.text}")
         break
 
-# Save data to a JSON file
 if all_purchases:
     with open("purchases.json", "w") as json_file:
         json.dump(all_purchases[:records_to_fetch], json_file, indent=4)
